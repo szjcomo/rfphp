@@ -15,9 +15,9 @@ return [
 	'MYSQL'=>[
 	    'host'                 => '127.0.0.1',
 	    'port'                 => 3306,
-	    'user'                 => 'hylg',
-	    'password'             => 'hylg2019',
-	    'database'             => 'hylg',
+	    'user'                 => 'xxx',
+	    'password'             => 'xxx',
+	    'database'             => 'xxx',
 	    'prefix'			   => 'szj_',
 	    'timeout'              => 30,
 	    'charset'              => 'utf8',

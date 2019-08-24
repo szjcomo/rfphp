@@ -100,7 +100,6 @@ Class Index extends ViewController {
 		//$result = \App\core\Excel::import('./static/test.xlsx');
 		//Task::addTask('exportEnroll',$insertData);
 
-		//Task::addTask('sendMail',['user'=>'2813058802@qq.com','password'=>'ddvspllucupfddfb','FromName'=>'思智捷罗勇发送来的邮件','addAttachment'=>['test.html'=>'./static/index.html']]);
 		//Mysql::DB()->insertMulti(Mysql::table('test1'),$insertData);
 		return $this->appJson($insertData);
 	}
