@@ -1,0 +1,30 @@
+{
+    "name": "szjcomo/rfphp",
+    "description": "the new refine php framework",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "refinephp",
+        "easyswoole"
+    ],
+    "require": {
+	"php": ">=7.1.0",
+        "szjcomo/szjcore": "^0.0.9"
+    },
+    "require-dev": {
+        "szjcomo/szjcore": "^0.0.9"
+    },
+    "license": "Apache-2.0",
+    "authors": [
+        {
+            "name": "como",
+            "email": "814655481@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\": "Application"
+        }
+    },
+    "minimum-stability": "dev"
+}
