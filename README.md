@@ -14,11 +14,11 @@
 ### Controller
                 
 ----
- ** 命名空间：szjcomo\szjcore\Controller ** 
+#### 命名空间：` szjcomo\szjcore\Controller ` 
                     
 > 继承自 EasySwoole\Http\AbstractInterface\Controller
 
- ** 方法列表：**
+#### 方法列表：
 
 |  类型 | 方法名称   | 参数说明  |  方法说明 |
 | ------------ | ------------ | ------------ | ------------ |
@@ -31,29 +31,29 @@
 | public  | onException()  |无 | 重写了easyswoole的onException事件，如果控制器出错,统一返回json格式错误信息  |
 | public  | _emtpy($action)  |action | 未请求到方法空操作设置,子类可根据业务需要自定义实现  |
 
-- ** 属性列表：**
+#### 属性列表：
 
 |  类型 | 属性名  |  实现方法 |  属性说明 |
 | ------------ | ------------ | ------------ | ------------ |
-|  Protected | context  |  method、get等等 | 控制器请求的上下文环境 具体详情可查看下方Context类  |
-|  Protected | _session  |  set、get等等 | 原生的easyswoole的session 具体可查看官方session文档  |
+|  Protected | $context  |  method、get等等 | 控制器请求的上下文环境 具体详情可查看下方Context类  |
+|  Protected | $_session  |  set、get等等 | 原生的easyswoole的session 具体可查看官方session文档  |
 
 
 ### ViewController
                 
 ----
- ** 命名空间：szjcomo\szjcore\ViewController ** 
+#### 命名空间：` szjcomo\szjcore\ViewController `
                     
 > 继承自 szjcomo\szjcore\Controller 模版引擎采用的think-template
 
- ** 方法列表：**
+####   方法列表：
 
 |  类型 | 方法名称   | 参数说明  |  方法说明 |
 | ------------ | ------------ | ------------ | ------------ |
 | public  | fetch($template)  | 模版路径  | 寻找根目录下templates下的模版文件  |
 
-- ** 属性列表：**
+#### 属性列表：
 
 |  类型 | 属性名  |  实现方法 |  属性说明 |
 | ------------ | ------------ | ------------ | ------------ |
-|  Protected | view  |  assign等等 | 具体可查看thinkphp template官方说明  |
+|  Protected | $view  |  assign等等 | 具体可查看thinkphp template官方说明  |
