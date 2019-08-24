@@ -9,10 +9,10 @@
     ],
     "require": {
 	"php": ">=7.1.0",
-        "szjcomo/szjcore": "^0.0.9"
+        "szjcomo/szjcore": "^0.0.10"
     },
     "require-dev": {
-        "szjcomo/szjcore": "^0.0.9"
+        "szjcomo/szjcore": "^0.0.10"
     },
     "license": "Apache-2.0",
     "authors": [
