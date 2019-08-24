@@ -25,7 +25,7 @@ use EasySwoole\EasySwoole\Config as GConfig;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Mysqli\Config as MysqlConfig;
 /*ip限流*/
-use App\core\Iplimit;
+use szjcomo\szjcore\Iplimit;
 use EasySwoole\Component\Process\AbstractProcess;
 
 class EasySwooleEvent implements Event
