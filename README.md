@@ -145,7 +145,7 @@ refinephp 常用类说明
 ####   方法列表：
 
 |  类型 | 方法名称   |   方法说明 |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ |
 | static  | setInterval($callback = null,$microSeconds = 5000,$params = [],$callbackClass = null)  |   $callback 是回调方法名称 可以为一个函数或函数名称 $microSeconds操作时间以毫称为单位 默认5000 $params 需要传递的参数  $callbackClass默认为\App\common\ExtendsCallback string类型，此方法返回一个定时器ID 无限执行 |
 | static  | clearInterval($tmId)  | 清除一个定时器   |
 | static  | setTimeout($callback = null,$microSeconds = 5000,$params = [],$callbackClass = null)  | 参数和用法与setInterval一致 请查看setInterval说明 只执行一次   |
