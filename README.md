@@ -2,13 +2,7 @@
 
 - refinephp 是一款基于easyswoole的快速开发的php框架，在原有的easyswoole的基础上增强了定时器、任务投递等功能，简化了配置操作、缓存操作、路由操作、以及reqeust、response等操作的复杂性
 
-**目录结构说明**
-
-[TOCM]
-
-[TOC]
-
-主要类功能说明
+refinephp 常用类说明
 -------------
 
 ### Controller
@@ -44,7 +38,7 @@
 ----
 #### 命名空间：` szjcomo\szjcore\ViewController `
                     
-> 继承自 szjcomo\szjcore\Controller 模版引擎采用的think-template
+> 继承自 szjcomo\szjcore\Controller 模版引擎采用的think-template 如果您是前后端分离的项目 请直接继承Controller类 不必继承此类 只有在用到View的情况下才继承此类
 
 ####   方法列表：
 
@@ -57,3 +51,5 @@
 |  类型 | 属性名  |  实现方法 |  属性说明 |
 | ------------ | ------------ | ------------ | ------------ |
 |  Protected | $view  |  assign等等 | 具体可查看thinkphp template官方说明  |
+
+
