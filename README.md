@@ -14,11 +14,11 @@
 ### Controller
                 
 ----
-- ** 命名空间：szjcomo\szjcore\Controller ** 
+ ** 命名空间：szjcomo\szjcore\Controller ** 
                     
 > 继承自 EasySwoole\Http\AbstractInterface\Controller
 
-- ** 方法列表：**
+ ** 方法列表：**
 
 |  类型 | 方法名称   | 参数说明  |  方法说明 |
 | ------------ | ------------ | ------------ | ------------ |
@@ -42,11 +42,11 @@
 ### ViewController
                 
 ----
-- ** 命名空间：szjcomo\szjcore\ViewController ** 
+ ** 命名空间：szjcomo\szjcore\ViewController ** 
                     
 > 继承自 szjcomo\szjcore\Controller 模版引擎采用的think-template
 
-- ** 方法列表：**
+ ** 方法列表：**
 
 |  类型 | 方法名称   | 参数说明  |  方法说明 |
 | ------------ | ------------ | ------------ | ------------ |
@@ -57,4 +57,3 @@
 |  类型 | 属性名  |  实现方法 |  属性说明 |
 | ------------ | ------------ | ------------ | ------------ |
 |  Protected | view  |  assign等等 | 具体可查看thinkphp template官方说明  |
-
