@@ -88,8 +88,6 @@ Class Index extends ViewController {
 				$id = Cache::set('insertdata',$result['data']);
 				echo 'id'.$id.PHP_EOL;
 			}
-		} else {
-			echo 456;
 		}
 
         //$this->session('userinfo',['username'=>'szjcomo','role_id'=>0]);
