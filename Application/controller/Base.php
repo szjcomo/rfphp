@@ -12,11 +12,11 @@
  */
 
 namespace App\controller;
-use szjcomo\szjcore\VeiwController;
+use szjcomo\szjcore\ViewController;
 /**
  * 继承自核心控制器类
  */
-Class Base extends VeiwController{
+Class Base extends ViewController{
 
 
 }
