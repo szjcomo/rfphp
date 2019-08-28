@@ -12,15 +12,15 @@
  */
 
 namespace App\HttpController;
-use szjcomo\szjcore\ViewController;
 use szjcomo\szjcore\Task;
 use szjcomo\szjcore\Timers;
 use szjcomo\szjcore\Mysql;
 use szjcomo\szjcore\Cache;
+use App\controller\Base;
 /**
  * 自定义控制器
  */
-Class Index extends ViewController {
+Class Index extends Base {
 	/**
 	 * [index 首页访问]
 	 * @Author    como
