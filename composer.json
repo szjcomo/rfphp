@@ -23,5 +23,11 @@
             "App\\": "Application"
         }
     },
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "repositories": {
+        "packagist": {
+            "type": "composer",
+            "url": "https://packagist.phpcomposer.com"
+        }
+    }
 }

@@ -18,5 +18,4 @@ use szjcomo\szjcore\ViewController;
  */
 Class Base extends ViewController{
 
-
 }
