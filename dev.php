@@ -22,7 +22,7 @@ return [
             'max_wait_time'=>3,
             'package_max_length'=> 2 * 1024 * 1024,                         //文上传大小限制
             //'enable_static_handler' => true,
-            //'document_root' => './static/',                    // v4.4.0以下版本, 此处必须为绝对路径
+            //'document_root' => './public/',                    // v4.4.0以下版本, 此处必须为绝对路径
         ],
     ],
     'TEMP_DIR' => null,

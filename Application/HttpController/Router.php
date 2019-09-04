@@ -28,9 +28,10 @@ Class Router extends AppRouter{
 	 */
 	Protected static function _registerRouter($route){
 		/**
-		 * 默认首页路由
+		 * 默认首页路由  注意 从实战测试中验证 只针对ip直接访问端口有效 
+		 * 绑定域名后无效
 		 */
-		$route->addRoute('GET','/index','/Index/postindex');
+		$route->addRoute('GET','/','/Index/postindex');
 	}
 
 }

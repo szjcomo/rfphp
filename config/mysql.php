@@ -13,18 +13,19 @@
 
 return [
 	'MYSQL'=>[
-	    'host'                 => '127.0.0.1',
-	    'port'                 => 3306,
-	    'user'                 => 'xxx',
-	    'password'             => 'xxx',
-	    'database'             => 'xxx',
-	    'prefix'			   => 'szj_',
-	    'timeout'              => 30,
-	    'charset'              => 'utf8',
-	    'connect_timeout'      => '5',		//连接超时时间
-	    'maxconn'			   => 50,		//最大链接数
-	    'minconn'			   => 5,		//最小链接数	
-	    'max_reconnect_times'  => 3, 		//断线重连时间
-
+		[
+			'host'                 => '127.0.0.1',
+	    	'port'                 => 3306,
+	    	'user'                 => 'xxx',
+	    	'password'             => 'xxx',
+	    	'database'             => 'xxx',
+	    	'prefix'			   => 'szj_',
+	    	'timeout'              => 30,
+	    	'charset'              => 'utf8',
+	    	'connect_timeout'      => '5',		//连接超时时间
+	    	'maxconn'			   => 50,		//最大链接数
+	    	'minconn'			   => 5,		//最小链接数	
+	    	'max_reconnect_times'  => 3, 		//断线重连时间
+		],
 	]
 ];

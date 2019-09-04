@@ -173,11 +173,14 @@ class EasySwooleEvent implements Event
      */
     Protected static function registerMysql(){
         $configData = GConfig::getInstance()->getConf('MYSQL');
-        $config     = new MysqlConfig($configData);
-        $poolConf   = Mysql::getInstance()->register('mysql',$config);
-        $poolConf->setMaxObjectNum($configData['maxconn']);
-        $poolConf->setMinObjectNum($configData['minconn']);
+        foreach($configData as $key=>$val){
+            $config     = new MysqlConfig($val);
+            $poolConf   = Mysql::getInstance()->register('mysql'.$key,$config);
+            $poolConf->setMaxObjectNum($val['maxconn']);
+            $poolConf->setMinObjectNum($val['minconn']);            
+        }
     }
+
     /**
      * [registerCusConfig 注册自定义配置文件功能]
      * @Author    como
