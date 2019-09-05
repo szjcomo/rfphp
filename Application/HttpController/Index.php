@@ -45,11 +45,11 @@ Class Index extends Base {
 	 */
 	Protected function adddata(){
 		try{
-			$enrollName = Mysql::table('enroll').' as e';
-			$gaidName = Mysql::table('graduate_area').' as ga';
-			$gtidName = Mysql::table('graduate_time').' as gt';
-			$sname    = Mysql::table('specialty').' as s';
-			$sname1    = Mysql::table('specialty').' as ss';
+			$enrollName = 'szj_enroll  as e';
+			$gaidName = 'szj_graduate_area  as ga';
+			$gtidName = 'szj_graduate_time  as gt';
+			$sname    = 'szj_specialty  as s';
+			$sname1    = 'szj_specialty  as ss';
 			$field = 'e.eid,e.uname,s.name as sname,e.address,e.born,e.idcardno,e.sex,e.nation,e.call_phone,e.stu_no,e.class_num,e.pay_money,e.is_pay,e.pay_type,e.out_trade_no,e.order_number,e.source_port,e.father_name,e.father_phone,e.is_del,e.add_admin,e.add_time,e.pay_time,e.flag,ga.ga_name,gt.gt_name,e.remarks,s.class_name,ss.name as pname';
 			$data = Mysql::DB()->join($gaidName,'ga.ga_id = e.ga_id')
 					->join($gtidName,'gt.gt_id = e.gt_id')
