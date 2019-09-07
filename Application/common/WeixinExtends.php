@@ -27,6 +27,7 @@
 *-----------------------------------------------------------------------------------
 */
 namespace App\common;
+use szjcomo\szjcore\Task;
 /**
  * 扩展微信通信功能
  */
@@ -76,7 +77,7 @@ Class WeixinExtends {
 		$result = self::wxResult('事件类消息回复');
 		switch($data['event']){
 			case 'click':
-				$result = self::wxResult('用户自定义菜单点击事件,事件值是:'.$data['eventkey']);
+				$result = self::clickCallback($data);
 				break;
 			case 'view':
 				$result = self::wxResult('用户自定义菜单链接事件,事件值是:'.$data['eventkey']);
@@ -85,7 +86,7 @@ Class WeixinExtends {
 				$result = self::wxResult('用户上报地理位置事件,事件值是'.$data['latitude'].$data['longitude']);
 				break;
 			case 'scan':
-				$result = self::wxResult('用户已关注时的事件推送,事件值是'.$data['eventkey']);
+				$result = self::wxResult('用户扫码已关注时的事件推送,事件值是'.$data['eventkey']);
 				break;
 			case 'subscribe':
 				$result = self::wxResult('用户首次关注时事件推送,事件值是');
@@ -96,11 +97,71 @@ Class WeixinExtends {
 			case 'templatesendjobfinish':
 				$result = self::wxResult('发送模版消息成功后回调通知');
 				break;
+			case 'qualification_verify_success':
+				$result = self::wxResult('微信公众号资质认证成功');
+				break;
+			case 'qualification_verify_fail':
+				$result = self::wxResult('微信公众号资质认证失败');
+				break;
+			case 'naming_verify_success':
+				$result = self::wxResult('名称认证成功（即命名成功）');
+				break;
+			case 'naming_verify_fail':
+				$result = self::wxResult('名称认证失败（这时虽然客户端不打勾，但仍有接口权限）');
+				break;
+			case 'annual_renew':
+				$result = self::wxResult('提醒公众号需要去年审了');
+				break;
+			case 'verify_expired':
+				$result = self::wxResult('认证过期失效通知审通知');
+				break;
+			case 'kf_create_session':
+				$result = self::wxResult('与客服建立会话成功');
+				break;
+			case 'kf_close_session':
+				$result = self::wxResult('用户退出与客服会话');
+				break;
 			default:
 				$result = self::wxResult('未知的事件类型,未处理');
 		}
 		return $result;
 	}
+	/**
+	 * 点击事件回调函数
+	 * @author szjcomo
+	 * @DateTime 2019-09-07T15:49:11+0800
+	 * @param    array                    $data [description]
+	 * @return   [type]                         [description]
+	 */
+	static function clickCallback(array $data):array
+	{
+		$key = $data['eventkey'];
+		switch($key){
+			case 'szjkf':
+				$result = self::szjkfCallback($data);
+				break;
+			default:
+				$result = self::wxResult('系统提醒：对不起,['.$key.']的值暂未查询相关的回复消息');
+				break;
+		}
+		return $result;
+	}
+	/**
+	 * [szjkfCallback 思智捷客服系统]
+	 * @author szjcomo
+	 * @DateTime 2019-09-07T15:50:15+0800
+	 * @param    array                    $data [description]
+	 * @return   [type]                         [description]
+	 */
+	static function szjkfCallback(array $data):array
+	{
+		$result = self::wxResult('szj@l15219840108','transfer_customer_service');
+		Task::addTask('sendCustomer',$data);
+		return $result;
+	}
+
+
+
 	/**
 	 * [Message 公众号内容发送的消息]
 	 * @author szjcomo

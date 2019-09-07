@@ -52,8 +52,6 @@ Class Index extends Base {
 	 * @return   [type]                   [description]
 	 */
 	Public function entry(){
-		///$token = baseWechat::getAccessToken('wxaa87568b97b2abc1','57a0c75ef9bbe24f65ebae9846e243f0');
-		//print_r($token);
 		$echostr = $this->context->get('echostr','');
 		if(!empty($echostr))
 			return $this->response()->write(baseWechat::checkSignature(self::getToken(),$this->context));
@@ -61,27 +59,23 @@ Class Index extends Base {
 			return $this->response()->write($this->wxMessage());
 	}
 
-	Public function tmp(){
-		$access_token = '25_qxJE5tGelTvVOvDrAMzIWnVmcruEIH2eOeGk0P3KUvEstyD22TnCHbR9T-N0kjHdi-b-6Dn_hg6AZDomIzkhCGl_OjTUgfloLFKNT6ftj6_udLRJJrGcHurW25iPpddxcmjT-unJrPlnia1tYHYbABABKB';
-		$data = [
-			'touser'=>'oSF4duIAfTLdEMukzNOpYPAuJxEo',
-			'template_id'=>'0lVAeJntZFHi950PI-iHl08Fo2Uuoa3P2Hx_DRofbqg',
-			'url'=>'http://www.sizhijie.com',
-	        /*"miniprogram"=>[
-	            "appid"=>"wx286b93c14bbf93aa",
-	            "pagepath"=>"pages/lunar/index"
-	        ],  */
-			"data"=>[
-				'name'=>['value'=>'罗勇','color'=>'#173177'],
-				'remark'=>['value'=>'皮鞋100元','color'=>'#ff0000']
-			]
-		];
-		$result = baseWechat::template($access_token,$data,'message');
-		return $this->appJson($result);
+	/**
+	 * [getAccessToken 获取access_token]
+	 * @author szjcomo
+	 * @DateTime 2019-09-05T14:12:30+0800
+	 * @return   [type]                   [description]
+	 */
+	Protected function getAccessToken(){
+		//思智捷服务
+		$appid = 'xxx';
+		$secret = 'xxx';
+		$res = baseWechat::getAccessToken($appid,$secret,true);
+		print_r($res);
+		if ($res['err'] == false){
+			return $res['data']['access_token'];
+		}
+		return '';
 	}
-
-
-
 
 	/**
 	 * [getToken 获取配置的token]

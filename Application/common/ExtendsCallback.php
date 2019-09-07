@@ -12,6 +12,7 @@
  */
 
 namespace App\common;
+use szjcomo\phpwechat\Wechat;
 /**
  * 扩展功能,更多应用可自由发挥
  * 当前可应用于 任务扩展 定时扩展
@@ -28,5 +29,19 @@ Class ExtendsCallback {
 	Public static function sendMail($data = []){
 		echo '执行邮件发送功能';
 		print_r($data);
+	}
+	/**
+	 * [sendCustomer 回复客服消息处理]
+	 * @author szjcomo
+	 * @DateTime 2019-09-07T17:16:56+0800
+	 * @return   [type]                   [description]
+	 */
+	static function sendCustomer($data = []){
+		$access_token = '25_mu-YzOijVtnAWxiub9GSZlPwJg_fWfjhL_ZVMUOlxkDF5W2BU80ONJp3gkeinKN_5cK4GksfRwmN8FHidaGXS_zUNnRwerzJLFXSGscvJxZ_k9ciY6BTZt3nVb4D_7xk3HT3y2BBMBxVuNiyYLKdAFAOBA';
+		$options = [
+			'touser'=>$data['openid'],'msgtype'=>'text',
+			'text'=>['content'=>'思智捷信息科技客服为您服务'."\r\n".'您好 请问下有什么可以帮您?']
+		];
+		Wechat::customer($access_token,$options,'message');
 	}
 }
