@@ -20,4 +20,6 @@ return [
 	'iplimit_open'					=>true,
 	// 每个IP每秒限制最大访问次数
 	'iplimit_secode'				=>100,
+	// 是否开启可以跨域请求
+	'cross_domain'					=>false
 ];

@@ -36,6 +36,11 @@ class EasySwooleEvent implements Event
      */
     Protected static $iplimitopen = null;
     /**
+     * [$crossDomain 是否开启可以跨域请求]
+     * @var boolean
+     */
+    Protected static $crossDomain = false;
+    /**
      * [initialize 全局初始化事件]
      * @Author    como
      * @DateTime  2019-08-15
@@ -66,6 +71,8 @@ class EasySwooleEvent implements Event
         self::registerFastCache();
         //拦截IP高访问的流
         self::registerIpLimitProcess();
+        //跨域请求处理
+        self::$crossDomain = GConfig::getInstance()->getConf('cross_domain');
     }
 
 
@@ -80,9 +87,18 @@ class EasySwooleEvent implements Event
      * @return    [type]               [description]
      */
     Public static function onRequest(Request $request, Response $response): bool{
-        // TODO: Implement onRequest() method.
+        //跨域处理
+        if(self::$crossDomain){
+            $response->withHeader('Access-Control-Allow-Origin', '*');
+            $response->withHeader('Access-Control-Allow-Methods', 'GET, POST');
+            $response->withHeader('Access-Control-Allow-Credentials', 'true');
+            $response->withHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With');       
+        }
+        //ip拦截器
         return self::registerIpLimit($request);
     }
+
+
     /**
      * [afterRequest 全局请求完成事件]
      * @Author    como
@@ -207,11 +223,10 @@ class EasySwooleEvent implements Event
      * @param     [type]     $ConfPath [description]
      * @return    [type]               [description]
      */
-    public static function loadConf($ConfPath){
+    Public static function loadConf($ConfPath){
         $Conf  = Config::getInstance();
         $datas = File::scanDirectory($ConfPath);
         if (empty($datas) || empty($datas['files']) || !is_array($datas['files']))  return;
         foreach ($datas['files'] as $file) $Conf->loadFile($file,true);
     }
-
 }
