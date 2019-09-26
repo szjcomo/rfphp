@@ -27,6 +27,7 @@ use EasySwoole\Mysqli\Config as MysqlConfig;
 /*ip限流*/
 use szjcomo\szjcore\Iplimit;
 use EasySwoole\Component\Process\AbstractProcess;
+use szjcomo\szjcore\HotReload;
 
 class EasySwooleEvent implements Event
 {
@@ -73,6 +74,8 @@ class EasySwooleEvent implements Event
         self::registerIpLimitProcess();
         //跨域请求处理
         self::$crossDomain = GConfig::getInstance()->getConf('cross_domain');
+        //开启热重载检查
+        self::projectReloadListen();
     }
 
 
@@ -114,7 +117,20 @@ class EasySwooleEvent implements Event
     }
 
     /********************************用户自定义全局功能***********************************/
-
+    /**
+     * [projectReloadListen 是否需要开启项目热重载监听]
+     * @Author   szjcomo
+     * @DateTime 2019-09-26
+     * @return   [type]     [description]
+     */
+    Protected static function projectReloadListen(){
+        $is_start = GConfig::getInstance()->getConf('hot_reload_start');
+        if($is_start === true){
+            $options = GConfig::getInstance()->getConf('hot_reload_config');
+            //注册热启动
+            ServerManager::getInstance()->getSwooleServer()->addProcess((new HotReload('HotReload', $options))->getProcess());
+        }
+    }
     /**
      * [registerIpLimitProcess 注册自定义进程定时清除拦籍的ip]
      * @Author    como

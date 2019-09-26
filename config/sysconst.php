@@ -21,5 +21,16 @@ return [
 	// 每个IP每秒限制最大访问次数
 	'iplimit_secode'				=>100,
 	// 是否开启可以跨域请求
-	'cross_domain'					=>false
+	'cross_domain'					=>false,
+	// 是否开启服务热重载
+	'hot_reload_start'				=>true,
+	// 热重载配置项
+	'hot_reload_config'				=>[
+		//是否禁用inotity扩展 （如果没有安扩展 建议为true  如果安装了扩展 建议为false）
+		'disableInotify'=>true,
+		//需要监控的目录
+		'monitorDir'=>EASYSWOOLE_ROOT . '/Application',
+		//需要监控的后缀
+		'monitorExt'=>['php']
+	]
 ];
