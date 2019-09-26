@@ -9,7 +9,8 @@
     ],
     "require": {
 	"php": ">=7.1.0",
-        "szjcomo/szjcore": "^0.0.16"
+        "szjcomo/szjcore": "^0.0.16",
+	"easyswoole/redis-pool": "dev-master"
     },
     "license": "Apache-2.0",
     "authors": [
