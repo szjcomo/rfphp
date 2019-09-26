@@ -24,6 +24,9 @@ use EasySwoole\Component\Di;
 use EasySwoole\EasySwoole\Config as GConfig;
 use EasySwoole\MysqliPool\Mysql;
 use EasySwoole\Mysqli\Config as MysqlConfig;
+/*redis*/
+use EasySwoole\RedisPool\Config as RedisConfig;
+use EasySwoole\RedisPool\Redis;
 /*ip限流*/
 use szjcomo\szjcore\Iplimit;
 use EasySwoole\Component\Process\AbstractProcess;
@@ -56,6 +59,8 @@ class EasySwooleEvent implements Event
         self::registerCusConfig();
         //注册mysql
         self::registerMysql();
+        //注册redis
+        self::registerRedis();
     }
     /**
      * [mainServerCreate 全局服务器创建事件]
@@ -117,6 +122,26 @@ class EasySwooleEvent implements Event
     }
 
     /********************************用户自定义全局功能***********************************/
+
+    /**
+     * [registerRedis 是否开始redis功能]
+     * @Author   szjcomo
+     * @DateTime 2019-09-26
+     * @return   [type]     [description]
+     */
+    Protected static function registerRedis(){
+        $is_redis_register = GConfig::getInstance()->getConf('is_redis_register');
+        if($is_redis_register){
+            $configData = GConfig::getInstance()->getConf('REDIS');
+            foreach($configData as $key=>$val){
+                $config = new RedisConfig($val);
+                $poolConf = Redis::getInstance()->register('redis'.$key,$config);
+                $poolConf->setMaxObjectNum($val['maxObjectNum']);
+                $poolConf->setMinObjectNum($val['minObjectNum']);            
+            }            
+        }
+    }
+
     /**
      * [projectReloadListen 是否需要开启项目热重载监听]
      * @Author   szjcomo
