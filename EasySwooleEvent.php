@@ -22,8 +22,8 @@ use EasySwoole\Utility\File;
 use EasySwoole\Component\Di;
 /*数据库*/
 use EasySwoole\EasySwoole\Config as GConfig;
-use EasySwoole\MysqliPool\Mysql;
-use EasySwoole\Mysqli\Config as MysqlConfig;
+use szjcomo\mysqliPool\Mysql;
+use szjcomo\mysqli\Config as MysqlConfig;
 /*redis*/
 use EasySwoole\RedisPool\Config as RedisConfig;
 use EasySwoole\RedisPool\Redis;
