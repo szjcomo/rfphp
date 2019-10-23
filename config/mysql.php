@@ -23,7 +23,7 @@ return [
 	    	'timeout'              => 30,
 	    	'charset'              => 'utf8',
 	    	'connect_timeout'      => '5',		//连接超时时间
-	    	'maxconn'			   => 50,		//最大链接数
+	    	'maxconn'			   => 30,		//最大链接数
 	    	'minconn'			   => 5,		//最小链接数	
 	    	'max_reconnect_times'  => 3, 		//断线重连时间
 		],
