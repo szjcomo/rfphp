@@ -57,10 +57,8 @@ class Index extends Base
 	public function entry()
 	{
 		$echostr = $this->context->get('echostr','');
-		if(!empty($echostr))
-			return $this->response()->write(baseWechat::checkSignature(self::getToken(),$this->context));
-		else 
-			return $this->response()->write($this->wxMessage());
+		if(!empty($echostr)) return $this->response()->write(baseWechat::checkSignature(self::getToken(),$this->context));
+		return $this->response()->write($this->wxMessage());
 	}
 
 	/**
