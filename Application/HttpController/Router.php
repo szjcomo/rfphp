@@ -12,12 +12,14 @@
  */
 
 namespace App\HttpController;
+
 use szjcomo\szjcore\Routers as AppRouter;
+
 /**
  * 继承自核心路由功能
  */
-Class Router extends AppRouter{
-
+class Router extends AppRouter
+{
 	/**
 	 * [_registerRouter description]
 	 * @Author    como
@@ -26,7 +28,8 @@ Class Router extends AppRouter{
 	 * @version   [1.5.0]
 	 * @return    [type]     [description]
 	 */
-	Protected static function _registerRouter($route){
+	protected static function _registerRouter($route)
+	{
 		/**
 		 * 默认首页路由  注意 从实战测试中验证 只针对ip直接访问端口有效 
 		 * 绑定域名后无效

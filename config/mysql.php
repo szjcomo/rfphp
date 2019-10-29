@@ -19,9 +19,10 @@ return [
 	    	'user'                 => 'xxx',
 	    	'password'             => 'xxx',
 	    	'database'             => 'xxx',
-	    	'prefix'			   => 'szj_',
+	    	'prefix'			   => 'xxx',
 	    	'timeout'              => 30,
 	    	'charset'              => 'utf8',
+	    	'debug'				   => true,
 	    	'connect_timeout'      => '5',		//连接超时时间
 	    	'maxconn'			   => 30,		//最大链接数
 	    	'minconn'			   => 5,		//最小链接数	

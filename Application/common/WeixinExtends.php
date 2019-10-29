@@ -1,37 +1,21 @@
 <?php
 /**
-*-----------------------------------------------------------------------------------
-////////////////////////////////////////////////////////////////////
-//                          _ooOoo_                               //
-//                         o8888888o                              //
-//                         88" . "88                              //
-//                         (| ^_^ |)                              //
-//                         O\  =  /O                              //
-//                      ____/`---'\____                           //
-//                    .'  \|     |//  `.                         //
-//                   /  \|||  :  |||//  \                        //
-//                  /  _||||| -:- |||||-  \                       //
-//                  |   | \\  -  /// |   |                       //
-//                  | \_|  ''\---/''  |   |                       //
-//                  \  .-\__  `-`  ___/-. /                       //
-//                ___`. .'  /--.--\  `. . ___                     //
-//            \  \ `-.   \_ __\ /__ _/   .-` /  /                 //
-//      ========`-.____`-.___\_____/___.-`____.-'========         //
-//                           `=---='                              //
-//      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^        //
-//         佛祖保佑       永无BUG       永不修改                    //
-////////////////////////////////////////////////////////////////////
-* @Copyright 思智捷科技(c) this is a snippet.
-* @Website: www.sizhijie.com
-* @Author : szjcomo 
-*-----------------------------------------------------------------------------------
-*/
+ * |-----------------------------------------------------------------------------------
+ * @Copyright (c) 2014-2018, http://www.sizhijie.com. All Rights Reserved.
+ * @Website: www.sizhijie.com
+ * @Version: 思智捷信息科技有限公司
+ * @Author : szjcomo 
+ * |-----------------------------------------------------------------------------------
+ */
 namespace App\common;
+
 use szjcomo\szjcore\Task;
+
 /**
  * 扩展微信通信功能
  */
-Class WeixinExtends {
+class WeixinExtends 
+{
 	/**
 	 * [callback 回调函数]
 	 * @author szjcomo
@@ -39,11 +23,10 @@ Class WeixinExtends {
 	 * @param    array                    $req [description]
 	 * @return   function                      [description]
 	 */
-	static function callback(array $req = []):array
+	public static function callback(array $req = []):array
 	{
 		$result = self::wxResult('未查询到相关的消息内容');
 		$data = self::toCusStruct($req);
-		print_r($data);
 		switch($data['type']){
 			case 'event':
 				$result = self::eventMessage($data);
@@ -61,7 +44,7 @@ Class WeixinExtends {
 	 * @param    string                   $type [text/image/news/video/voice]
 	 * @return   [type]                         [description]
 	 */
-	static function wxResult($data = null,string $type = 'text'):array
+	public static function wxResult($data = null,string $type = 'text'):array
 	{
 		return ['type'=>$type,'data'=>$data];
 	}
@@ -72,7 +55,7 @@ Class WeixinExtends {
 	 * @param    array                    $data [description]
 	 * @return   [type]                         [description]
 	 */
-	static function eventMessage(array $data = []):array
+	public static function eventMessage(array $data = []):array
 	{
 		$result = self::wxResult('事件类消息回复');
 		switch($data['event']){
@@ -133,7 +116,7 @@ Class WeixinExtends {
 	 * @param    array                    $data [description]
 	 * @return   [type]                         [description]
 	 */
-	static function clickCallback(array $data):array
+	public static function clickCallback(array $data):array
 	{
 		$key = $data['eventkey'];
 		switch($key){
@@ -153,14 +136,12 @@ Class WeixinExtends {
 	 * @param    array                    $data [description]
 	 * @return   [type]                         [description]
 	 */
-	static function szjkfCallback(array $data):array
+	public static function szjkfCallback(array $data):array
 	{
 		$result = self::wxResult('szj@l15219840108','transfer_customer_service');
 		Task::addTask('sendCustomer',$data);
 		return $result;
 	}
-
-
 
 	/**
 	 * [Message 公众号内容发送的消息]
@@ -168,7 +149,7 @@ Class WeixinExtends {
 	 * @DateTime 2019-09-03T14:48:38+0800
 	 * @param    array                    $data [description]
 	 */
-	static function contentMessage(array $data = []):array
+	public static function contentMessage(array $data = []):array
 	{
 		$result = self::wxResult('用户发送消息类');
 		switch ($data['type']) {
@@ -205,7 +186,7 @@ Class WeixinExtends {
 	 * @param    array                    $req [description]
 	 * @return   [type]                        [description]
 	 */
-	static function toCusStruct(array $req = []):array
+	public static function toCusStruct(array $req = []):array
 	{
 		$type = $req['MsgType'];
 		$params = ['openid'=>$req['FromUserName'],'type'=>$type];

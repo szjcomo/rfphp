@@ -22,6 +22,15 @@ return [
 	'iplimit_secode'				=>100,
 	// 是否开启可以跨域请求
 	'cross_domain'					=>false,
+	// 是否开启内置缓存
+	'fast_cache_open' 				=>true,
+	// 内置缓存配置项
+	'fast_cache_config' 			=>[
+		// 设置内置缓存目录
+		'write_path' 				=>EASYSWOOLE_ROOT.'/runtime/cache/',
+		// 数据写入频率 默认每间隔5秒检查写入一次 
+		'write_time_rate'			=>5
+	],
 	// 是否开启服务热重载
 	'hot_reload_start'				=>true,
 	// 热重载配置项

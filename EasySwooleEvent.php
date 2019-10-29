@@ -18,6 +18,7 @@ use EasySwoole\EasySwoole\AbstractInterface\Event;
 use EasySwoole\Http\Request;
 use EasySwoole\Http\Response;
 use EasySwoole\FastCache\Cache;
+use szjcomo\szjcore\CacheExtends;
 use EasySwoole\Utility\File;
 use EasySwoole\Component\Di;
 /*数据库*/
@@ -38,12 +39,12 @@ class EasySwooleEvent implements Event
      * [$iplimitopen 是否开启IP限流]
      * @var boolean
      */
-    Protected static $iplimitopen = null;
+    protected static $iplimitopen = null;
     /**
      * [$crossDomain 是否开启可以跨域请求]
      * @var boolean
      */
-    Protected static $crossDomain = false;
+    protected static $crossDomain = false;
     /**
      * [initialize 全局初始化事件]
      * @Author    como
@@ -52,7 +53,8 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Public static function initialize(){
+    public static function initialize()
+    {
         // TODO: Implement initialize() method.
         date_default_timezone_set('Asia/Shanghai');
         //注册自定义配置
@@ -71,7 +73,8 @@ class EasySwooleEvent implements Event
      * @param     EventRegister $register [description]
      * @return    [type]                  [description]
      */
-    Public static function mainServerCreate(EventRegister $register){
+    public static function mainServerCreate(EventRegister $register)
+    {
         // TODO: Implement mainServerCreate() method.
         //注册缓存类
         self::registerFastCache();
@@ -94,7 +97,8 @@ class EasySwooleEvent implements Event
      * @param     Response   $response [description]
      * @return    [type]               [description]
      */
-    Public static function onRequest(Request $request, Response $response): bool{
+    public static function onRequest(Request $request, Response $response): bool
+    {
         //跨域处理
         if(self::$crossDomain){
             $response->withHeader('Access-Control-Allow-Origin', '*');
@@ -117,7 +121,8 @@ class EasySwooleEvent implements Event
      * @param     Response   $response [description]
      * @return    [type]               [description]
      */
-    Public static function afterRequest(Request $request, Response $response): void{
+    public static function afterRequest(Request $request, Response $response): void
+    {
         // TODO: Implement afterAction() method.
     }
 
@@ -129,7 +134,8 @@ class EasySwooleEvent implements Event
      * @DateTime 2019-09-26
      * @return   [type]     [description]
      */
-    Protected static function registerRedis(){
+    protected static function registerRedis()
+    {
         $is_redis_register = GConfig::getInstance()->getConf('is_redis_register');
         if($is_redis_register){
             $configData = GConfig::getInstance()->getConf('REDIS');
@@ -148,7 +154,8 @@ class EasySwooleEvent implements Event
      * @DateTime 2019-09-26
      * @return   [type]     [description]
      */
-    Protected static function projectReloadListen(){
+    protected static function projectReloadListen()
+    {
         $is_start = GConfig::getInstance()->getConf('hot_reload_start');
         if($is_start === true){
             $options = GConfig::getInstance()->getConf('hot_reload_config');
@@ -164,7 +171,8 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Protected static function registerIpLimitProcess(){
+    protected static function registerIpLimitProcess()
+    {
         if(is_null(self::$iplimitopen)){
             self::$iplimitopen = GConfig::getInstance()->getConf('iplimit_open');
         }
@@ -190,7 +198,8 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Protected static function registerIpLimit($request){
+    protected static function registerIpLimit($request)
+    {
         if(is_null(self::$iplimitopen)){
             self::$iplimitopen = GConfig::getInstance()->getConf('iplimit_open');
         }
@@ -216,8 +225,13 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Protected static function registerFastCache(){
-        Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
+    protected static function registerFastCache(){
+        $isopen = GConfig::getInstance()->getConf('fast_cache_open');
+        if($isopen === true) {
+            $config = GConfig::getInstance()->getConf('fast_cache_config');
+            CacheExtends::run($config);
+            Cache::getInstance()->setTempDir(EASYSWOOLE_TEMP_DIR)->attachToServer(ServerManager::getInstance()->getSwooleServer());
+        }
     }
 
     /**
@@ -228,7 +242,8 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Protected static function registerMysql(){
+    protected static function registerMysql()
+    {
         $configData = GConfig::getInstance()->getConf('MYSQL');
         foreach($configData as $key=>$val){
             $config     = new MysqlConfig($val);
@@ -246,7 +261,8 @@ class EasySwooleEvent implements Event
      * @version   [1.5.0]
      * @return    [type]     [description]
      */
-    Protected static function registerCusConfig(){
+    protected static function registerCusConfig()
+    {
         //加载自定义配置文件
         self::loadConf(EASYSWOOLE_ROOT . '/config');
         //获取自定义pool最大链接数
@@ -264,7 +280,8 @@ class EasySwooleEvent implements Event
      * @param     [type]     $ConfPath [description]
      * @return    [type]               [description]
      */
-    Public static function loadConf($ConfPath){
+    public static function loadConf($ConfPath)
+    {
         $Conf  = Config::getInstance();
         $datas = File::scanDirectory($ConfPath);
         if (empty($datas) || empty($datas['files']) || !is_array($datas['files']))  return;

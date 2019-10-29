@@ -28,30 +28,34 @@
 */
 
 namespace App\HttpController\Wechat;
+
 use App\controller\Base;
 use szjcomo\phpwechat\Wechat as baseWechat;
 use EasySwoole\EasySwoole\Logger;
+
 /**
  * 微信通知接口控制器
  */
-Class Index extends Base {
+class Index extends Base 
+{
 	/**
 	 * [$extendsClass 指定微信通知回调类]
 	 * @var string
 	 */
-	Protected $extendsClass 	= '\App\common\WeixinExtends';
+	protected $extendsClass 	= '\App\common\WeixinExtends';
 	/**
 	 * [$extendsCallback 统一的消息回复回调函数]
 	 * @var string
 	 */
-	Protected $extendsCallback 	= 'callback';
+	protected $extendsCallback 	= 'callback';
 	/**
 	 * [entry 微信通信入口]
 	 * @author szjcomo
 	 * @DateTime 2019-09-02T10:40:57+0800
 	 * @return   [type]                   [description]
 	 */
-	Public function entry(){
+	public function entry()
+	{
 		$echostr = $this->context->get('echostr','');
 		if(!empty($echostr))
 			return $this->response()->write(baseWechat::checkSignature(self::getToken(),$this->context));
@@ -65,7 +69,8 @@ Class Index extends Base {
 	 * @DateTime 2019-09-05T14:12:30+0800
 	 * @return   [type]                   [description]
 	 */
-	Protected function getAccessToken(){
+	protected function getAccessToken()
+	{
 		//思智捷服务
 		$appid = 'xxx';
 		$secret = 'xxx';
@@ -83,7 +88,8 @@ Class Index extends Base {
 	 * @DateTime 2019-09-02T11:09:37+0800
 	 * @return   [type]                   [description]
 	 */
-	Protected static function getToken(){
+	protected static function getToken()
+	{
 		return 'szjcomo2019';
 	}
 	/**
@@ -92,7 +98,8 @@ Class Index extends Base {
 	 * @DateTime 2019-09-02T11:08:43+0800
 	 * @return   [type]                   [description]
 	 */
-	Protected function wxMessage(){
+	protected function wxMessage()
+	{
 		$result = baseWechat::start($this->context);
 		if($result['err'] == false){
 			return baseWechat::run($this->extendsClass,$this->extendsCallback,$result['data']);
