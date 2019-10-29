@@ -22,9 +22,9 @@ return [
 	    	'prefix'			   => 'xxx',
 	    	'timeout'              => 30,
 	    	'charset'              => 'utf8',
-	    	'debug'				   => true,
+	    	'debug'				   => true, 	//是否开启调式模式  调试模式下会直接打印sql语句
 	    	'connect_timeout'      => '5',		//连接超时时间
-	    	'maxconn'			   => 30,		//最大链接数
+	    	'maxconn'			   => 30,		//最大链接数 如果没有优化mysql 建议不要修改此链接数
 	    	'minconn'			   => 5,		//最小链接数	
 	    	'max_reconnect_times'  => 3, 		//断线重连时间
 		],

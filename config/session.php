@@ -22,7 +22,7 @@ return [
 		/**
 		 * session 保存路径
 		 */
-		'path'		=>'./session',
+		'path'		=>EASYSWOOLE_ROOT.'/session',
 		/**
 		 * 是否自动开启session
 		 */
